@@ -1,0 +1,26 @@
+<body>
+	<input type="date" id = "date"/>
+	<button id="check">Hey</button>
+	<div id="result"/>
+</body>
+
+<script>
+	document.getElementById("check").onclick = () => {
+
+		const dateI = document.getElementById('date');
+		const dateV = String(dateI.value);
+		if (dateV === "")
+			return;
+		const vDate = new Date(dateV);
+
+		let christmas = new Date(vDate.getFullYear() + "-12-25");
+		if (vDate.getDate() > 25 && vDate.getMonth() >= 11)
+			christmas = new Date((vDate.getFullYear() +1) + "-12-25");
+		
+		const dateDiff = new Date(christmas - vDate);
+		const tDiff = dateDiff.getTime();
+		const dayDiff = tDiff / (24*60*60*1000);
+		console.log(dayDiff, dateV);
+		document.getElementById('result').innerHTML  = dayDiff;
+	};
+</script>
